@@ -1,0 +1,26 @@
+services:
+  db:
+    container_name: vampire_database
+    image: "mysql"
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=3wUYHPkDXBSUAvC1d62cAi
+      - MYSQL_DATABASE=vampire
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+
+  api:
+    container_name: vampire_api
+    build: .
+    depends_on:
+      - db
+    ports:
+      - "8081:8081"
+    environment:
+      - PROFILE=dev
+      - DBV_HOST=db
+      - DBV_PORT=3306
+      - DBV_NAME=vampire
+      - DBV_ADMIN=root
+      - DBV_PASSWORD=3wUYHPkDXBSUAvC1d62cAi

@@ -1,0 +1,6 @@
+package api.rpg.vampire.infra.security;
+
+public class AppOrigin
+{
+    public static final String ORIGIN_X = "http://localhost:3000";
+}
