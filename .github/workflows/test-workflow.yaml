@@ -1,0 +1,17 @@
+on: push
+
+jobs:
+  job1-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test - Print message
+        run: echo "Hello, world! - test"
+  job2-goodbye:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step 1 - instructions sequences
+        run: |
+          echo "new instruction"
+          ls
+      - name: Step 2 - print message
+        run: echo "Step 2!"
