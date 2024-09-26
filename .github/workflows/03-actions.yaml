@@ -2,7 +2,8 @@ name: 03 - Actions
 
 on:
   push:
-    branches: "feature/**"
+    branches:
+      - "feature/**"
 
 jobs:
   checkout_java_docker:
@@ -17,12 +18,13 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Build
+      - name: Build Docker Image
         uses: docker/build-push-action@v6
         with:
+          context: .
           push: false
 
-      - name: Executar scripts
+      - name: Execute Scripts
         run: |
           git branch
           java --version 
