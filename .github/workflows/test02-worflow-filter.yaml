@@ -1,0 +1,12 @@
+name: Workflow - Filter
+
+on:
+  push:
+    branches: 'feature/**'
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show event
+        run: echo "Workflow send by ${{ github.event_name }}"
