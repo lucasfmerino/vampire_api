@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -42,10 +43,16 @@ public class AuthService implements UserDetailsService
      * START
      *
      */
-    public String start()
-    {
-        Optional<User> superAdmin = userRepository.findUserByUsername(roleUsername);
-        superAdmin.ifPresent(user -> userRepository.delete(user));
+    @Transactional
+    public String start() {
+        Optional<User> superAdminOptional = userRepository.findUserByUsername(roleUsername);
+
+        if (superAdminOptional.isPresent()) {
+            User superAdmin = superAdminOptional.get();
+
+            userRepository.delete(superAdmin);
+            userRepository.flush();
+        }
 
         createSuperAdmin();
 
