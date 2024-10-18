@@ -44,9 +44,13 @@ public class ApplicationExceptionHandler
 
 
     @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<String> handleNotFoundException(RuntimeException e)
+    public ResponseEntity<ErrorResponse> handleNotFoundException(RuntimeException e)
     {
-        return ResponseEntity.notFound().build();
+        ErrorResponse errorResponse = new ErrorResponse(
+                HttpStatus.NOT_FOUND.value(),
+                e.getMessage()
+        );
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
 

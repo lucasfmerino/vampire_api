@@ -95,10 +95,12 @@ public class SecurityConfiguration
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of(
-                AppOrigin.ORIGIN_A,
-                AppOrigin.ORIGIN_B,
-                AppOrigin.ORIGIN_C,
-                AppOrigin.ORIGIN_D
+//                AppOrigin.ORIGIN_A,
+//                AppOrigin.ORIGIN_B,
+//                AppOrigin.ORIGIN_C,
+//                AppOrigin.ORIGIN_D
+                "http://localhost:3000"
+
         ));
         configuration.setAllowedMethods(List.of(CorsConfiguration.ALL));
         configuration.setAllowedHeaders(List.of("*"));

@@ -16,5 +16,5 @@ CREATE TABLE t_user (
 CREATE TABLE user_roles (
     user_id BINARY(16) NOT NULL,
     role VARCHAR(255) NOT NULL,
-    CONSTRAINT fk_user_role_user_id FOREIGN KEY (user_id) REFERENCES t_user(id)
+    CONSTRAINT fk_user_role_user_id FOREIGN KEY (user_id) REFERENCES t_user(id) ON DELETE CASCADE
 );
